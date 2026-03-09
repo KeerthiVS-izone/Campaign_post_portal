@@ -1,14 +1,11 @@
 import { useState, useEffect, useMemo } from 'react';
-import { useLocation, Link } from 'react-router-dom';
+import { useLocation} from 'react-router-dom';
 import { getCampaignPosts, CampaignPost } from '../api';
 import PostCard from '../components/PostCard';
 
-interface LocationState {
-  name?: string;
-}
 
 export default function PostsPage() {
-  const location = useLocation();
+  useLocation();
   const savedUser = localStorage.getItem("campaign_user");
 const volunteerName = savedUser ? JSON.parse(savedUser).name : undefined;
 

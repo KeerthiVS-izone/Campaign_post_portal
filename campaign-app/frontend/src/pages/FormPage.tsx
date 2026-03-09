@@ -298,7 +298,7 @@ export default function FormPage() {
     e: React.ChangeEvent<HTMLInputElement>
   ) => {
     const { name, value } = e.target;
-
+    console.log("Input Changed:", name, value); // ADD HERE
     setForm((prev) => ({
       ...prev,
       [name]: value,
@@ -316,15 +316,24 @@ export default function FormPage() {
     e.preventDefault();
     setServerError('');
 
-    if (!validate()) return;
+    console.log("Form Data Before Validation:", form); // ADD HERE
+
+    if (!validate()) {
+      console.log("Validation Failed:", errors); // ADD HERE
+      return;
+    }
 
     setLoading(true);
 
     try {
+      console.log("Sending Data To API:", form); // ADD HERE
       await submitCampaignData(form);
+      console.log("API Success"); // ADD HERE
       navigate('/posts', { state: { name: form.name } });
     } catch (err: unknown) {
+      console.error("API ERROR:", err); // ADD HERE
       const msg = (err as { response?: { data?: { detail?: string } } })?.response?.data?.detail;
+      console.log("Server Response:", msg); // ADD HERE
       setServerError(msg || 'சர்வர் பிழை. மீண்டும் முயற்சிக்கவும்.');
     } finally {
       setLoading(false);
@@ -349,14 +358,14 @@ export default function FormPage() {
         </div>
       </div>
 
-      {/* Info Box */}
-      <div className="info-box">
+      Info Box
+      {/* <div className="info-box">
         <span>ℹ️</span>
         <span>
           உங்கள் தகவல்கள் பாதுகாப்பாக சேமிக்கப்படும். படிவம் நிரப்பிய பிறகு
           பிரச்சார இடுகைகளை Twitter/X-ல் பகிர்ந்து கொள்ளலாம்.
         </span>
-      </div>
+      </div> */}
 
       <form className="form-card" onSubmit={handleSubmit} noValidate>
 
@@ -495,7 +504,7 @@ export default function FormPage() {
             </>
           ) : (
             <>
-              ✅ பதிவு செய்து தொடரவும்
+              பதிவு செய்து தொடரவும்
               <span>→</span>
             </>
           )}

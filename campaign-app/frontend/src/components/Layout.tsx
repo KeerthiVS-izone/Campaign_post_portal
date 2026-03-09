@@ -17,8 +17,8 @@ export default function Layout({ children }: LayoutProps) {
           <div className="header-brand">
             <div className="header-logo">த</div>
             <div className="header-title">
-              <h1>DMK Campaign Portal</h1>
-              <p>திமுக தேர்தல் பிரச்சார தளம்</p>
+              <h1>Campaign Portal</h1>
+              <p>தேர்தல் பிரச்சார தளம்</p>
             </div>
           </div>
           <span className="header-badge">2026 தேர்தல்</span>
@@ -29,13 +29,13 @@ export default function Layout({ children }: LayoutProps) {
       <div className="hero-banner">
         {isPostsPage ? (
           <>
-            <h2>📢 பிரச்சார இடுகைகள்</h2>
-            <p>கீழே உள்ள இடுகைகளை X (Twitter)-இல் பகிரவும்</p>
+            <h2>📢 ஸ்டாலின் தொடரட்டும், தமிழ்நாடு வெல்லட்டும்</h2>
+            <p>திமுக தகவல் தொழில்நுட்ப அணி - Tweet bank</p>
           </>
         ) : (
           <>
-            <h2>🗳️ தன்னார்வலர் பதிவு</h2>
-            <p>உங்கள் தகவல்களை நிரப்பி பிரச்சாரத்தில் இணையுங்கள்</p>
+            <h2>ஸ்டாலின் தொடரட்டும், தமிழ்நாடு வெல்லட்டும்.</h2>
+            <p>திமுக தகவல் தொழில்நுட்ப அணி - Tweet bank</p>
           </>
         )}
       </div>

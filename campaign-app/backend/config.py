@@ -13,12 +13,12 @@ load_dotenv(dotenv_path=os.path.join(os.path.dirname(__file__), ".env"))
 
 class Settings:
     # ── Database ──────────────────────────────────────────────────
-    DB_HOST:     str = os.getenv("DB_HOST",     "localhost")
+    DB_HOST:     str = os.getenv("DB_HOST",     "72.62.198.6")
     DB_PORT:     str = os.getenv("DB_PORT",     "5432")
-    DB_NAME:     str = os.getenv("DB_NAME",     "campaign_db")
-    DB_USER:     str = os.getenv("DB_USER",     "postgres")
-    DB_PASSWORD: str = os.getenv("DB_PASSWORD", "postgre123")
-    DB_SCHEMA:   str = os.getenv("DB_SCHEMA",   "campaign_db")   # ← NEW
+    DB_NAME:     str = os.getenv("DB_NAME",     "izone_db")
+    DB_USER:     str = os.getenv("DB_USER",     "data_admin")
+    DB_PASSWORD: str = os.getenv("DB_PASSWORD", "qqssxx&234%23Tc")
+    DB_SCHEMA:   str = os.getenv("DB_SCHEMA",   "campaign_tweet")   # ← NEW
 
     @property
     def DATABASE_URL(self) -> str:

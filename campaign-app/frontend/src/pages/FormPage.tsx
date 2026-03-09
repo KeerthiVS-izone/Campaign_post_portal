@@ -243,7 +243,7 @@
 
 
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { submitCampaignData, CampaignFormData } from '../api';
 
@@ -316,29 +316,34 @@ export default function FormPage() {
     e.preventDefault();
     setServerError('');
 
-    console.log("Form Data Before Validation:", form); // ADD HERE
-
-    if (!validate()) {
-      console.log("Validation Failed:", errors); // ADD HERE
-      return;
-    }
+    if (!validate()) return;
 
     setLoading(true);
 
     try {
-      console.log("Sending Data To API:", form); // ADD HERE
       await submitCampaignData(form);
-      console.log("API Success"); // ADD HERE
-      navigate('/posts', { state: { name: form.name } });
+
+      // :white_check_mark: persist user
+      localStorage.setItem("campaign_user", JSON.stringify({
+        name: form.name
+      }));
+
+      navigate('/posts');
+
     } catch (err: unknown) {
-      console.error("API ERROR:", err); // ADD HERE
       const msg = (err as { response?: { data?: { detail?: string } } })?.response?.data?.detail;
-      console.log("Server Response:", msg); // ADD HERE
       setServerError(msg || 'சர்வர் பிழை. மீண்டும் முயற்சிக்கவும்.');
     } finally {
       setLoading(false);
     }
   };
+  useEffect(() => {
+    const user = localStorage.getItem("campaign_user");
+
+    if (user) {
+      navigate("/posts");
+    }
+  }, []);
 
   return (
     <div>

@@ -9,8 +9,8 @@ interface LocationState {
 
 export default function PostsPage() {
   const location = useLocation();
-  const state = location.state as LocationState;
-  const volunteerName = state?.name;
+  const savedUser = localStorage.getItem("campaign_user");
+const volunteerName = savedUser ? JSON.parse(savedUser).name : undefined;
 
   const [posts, setPosts] = useState<CampaignPost[]>([]);
   const [loading, setLoading] = useState(true);
@@ -88,7 +88,7 @@ export default function PostsPage() {
       {/* Toolbar */}
       <div className="posts-toolbar">
         <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-          <Link to="/" className="btn-back">← திரும்பு</Link>
+          {/* <Link to="/" className="btn-back">← திரும்பு</Link> */}
           {!loading && (
             <span className="posts-count">{filteredPosts.length} இடுகைகள்</span>
           )}
@@ -145,11 +145,10 @@ export default function PostsPage() {
           ) : (
             <>
               <div className="posts-list">
-                {paginatedPosts.map((post, i) => (
+                {paginatedPosts.map((post) => (
                   <PostCard
                     key={post.id}
                     post={post}
-                    index={(currentPage - 1) * postsPerPage + i}
                   />
                 ))}
               </div>

@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const API = axios.create({
-  baseURL: 'https://tweetapi.risingsuntech.in',
+  baseURL: 'https://tweetapi.risingsuntech.in/api',
   headers: { 'Content-Type': 'application/json' },
 });
 

@@ -1,8 +1,0 @@
-node_modules/
-venv/
-campenv/
-__pycache__/
-*.pyc
-.env
-dist/
-build/
